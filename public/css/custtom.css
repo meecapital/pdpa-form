@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;1,200;1,300&display=swap");
+.imgHome {
+  position: fixed;
+  display: block;
+  width: 100%;
+  justify-content: center;
+}
+.header-content-bg {
+  background-image: url("../images/bg.png");
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-clip: border-box;
+  background-size: cover;
+}
+
+.img-header {
+  width: 178%;
+  position: absolute;
+  margin-bottom: -10px;
+  z-index: 2;
+}
+
+.header-line{
+    position: absolute;
+    z-index: 1;
+}
+.header-line2{
+    position: absolute;
+    z-index: 3;
+    background-color: white;
+}
+
+.header {
+
+}
+body {
+  font-family: "Kanit", sans-serif;
+}
+
+div {
+  font-family: "Kanit", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Kanit", sans-serif;
+}
+p {
+  font-family: "Kanit", sans-serif;
+}

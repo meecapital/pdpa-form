@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/checklogin.js"></script>
+    <script>
+        $(function () {
+            setTimeout(function () {
+                $(".dataTables_filter").css("float", "right");
+                $(".dataTables_paginate").css("float", "right");
+            }, 1);
+            $("head").load("include/head.html");
+        });
+    </script>
+</head>
+
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+    <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div id="loader"></div>
+    <!-- end of preloader -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script>
+            $(function () { $("nav").load("include/body.html") });
+        </script>
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-img header-content-bg">
+            <div style="padding: 50px;" class="header-content">
+            </div> <!-- end of header-content -->
+        </div> <!-- end of header-img -->
+    </header> <!-- end of header -->
+    <!-- Header -->
+
+
+    <!-- <a href="#" class="notification">
+        <span>Inbox</span>
+        <span class="badge">3</span>
+      </a> -->
+
+
+    <!-- Newsletter -->
+    <div class="form" id="contact">
+
+        <div class="container">
+
+            <div style="display: flex; margin-bottom: 30px; margin-top: -30px;" class="text-left row">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4 id="show_emp_username"></h4>&nbsp;&nbsp;
+                <h4 id="show_emp_name"></h4>
+            </div>
+
+            <br />
+
+            <div style="margin-bottom: 30px; margin-top: -90px;" class="text-right">
+                <button id="btnOut" class="btn btn-danger">ออกจากระบบ</button>
+            </div>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="tabOk-tab" data-toggle="tab" href="#tabOk" role="tab"
+                        aria-controls="tabOk" aria-selected="true">รายการยินยอม</a>
+                </li>
+
+                <a href="#" class="notification">
+                    <span></span>
+                    <span id="notification0" class="badge"></span>
+                </a>
+
+                <li class="nav-item">
+                    <a class="nav-link " id="tabNotOk-tab" data-toggle="tab" href="#tabNotOk" role="tab"
+                        aria-controls="tabNotOk" aria-selected="false">
+                        รายการขอยกเลิกยินยอม
+                    </a>
+                </li>
+
+                <a href="#" class="notification">
+                    <span></span>
+                    <span id="notification1" class="badge"></span>
+                </a>
+
+                <li class="nav-item">
+                    <a class="nav-link " id="tabReportProblemOk-tab" data-toggle="tab" href="#tabReportProblemOk" role="tab"
+                        aria-controls="tabReportProblemOk" aria-selected="false">
+                        รายการร้องเรียน
+                    </a>
+                </li>
+
+                    <a href="#" class="notification">
+                        <span></span>
+                        <span id="notification2" class="badge"></span>
+                    </a>
+
+                <li class="nav-item">
+                    <a class="nav-link " id="tabReportOk-tab" data-toggle="tab" href="#tabReportOk" role="tab"
+                        aria-controls="tabReportOk" aria-selected="false">
+                        รายงาน
+                    </a>
+                </li>
+            </ul>
+
+            <br />
+
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="tabOk" role="tabpanel" aria-labelledby="received-tab">
+
+                    <div class="card shadow mb-4">
+                        <!-- start of row -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">รายการยินยอม</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered datatables" id="item_table" width="100%"
+                                    cellspacing="0">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th width="100"></th>
+                                            <th class="text-center">ชื่อ-นามสกุล</th>
+                                            <th width="200" class="text-center">เบอร์โทร</th>
+                                            <th class="text-center">อีเมล</th>
+                                            <th class="text-center">เลขบัตรประชาชน</th>
+                                            <th class="text-center">โปรเจ็ค</th>
+                                            <th class="text-center">วันที่สร้าง</th>
+                                            <th class="text-center">วันที่ยกเลิก</th>
+                                            <th class="text-center">ยกเลิกโดย</th>
+                                            <th class="text-center">สถานะ</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th width="100"></th>
+                                            <th class="text-center">ชื่อ-นามสกุล</th>
+                                            <th width="200" class="text-center">เบอร์โทร</th>
+                                            <th class="text-center">อีเมล</th>
+                                            <th class="text-center">เลขบัตรประชาชน</th>
+                                            <th class="text-center">โปรเจ็ค</th>
+                                            <th class="text-center">วันที่สร้าง</th>
+                                            <th class="text-center">วันที่ยกเลิก</th>
+                                            <th class="text-center">ยกเลิกโดย</th>
+                                            <th class="text-center">สถานะ</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div> <!-- end of row -->
+                </div>
+
+                <div class="tab-pane fade" id="tabNotOk" role="tabpanel" aria-labelledby="received-tab">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">รายการขอยกเลิกยินยอม</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered datatables" id="item_table_cancel" width="100%"
+                                    cellspacing="0">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th width="100"></th>
+                                            <th class="text-center">ชื่อ-นามสกุล</th>
+                                            <th class="text-center">เบอร์โทร</th>
+                                            <th class="text-center">อีเมล</th>
+                                            <!-- <th class="text-center">เลขบัตรประชาชน</th>
+                                            <th class="text-center">โปรเจ็ค</th> -->
+                                            <th class="text-center">วันที่ร้องขอ</th>
+                                            <th class="text-center">วันที่ยกเลิก</th>
+                                            <th class="text-center">ยกเลิกโดย</th>
+                                            <th class="text-center">สถานะ</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th width="100"></th>
+                                            <th class="text-center">ชื่อ-นามสกุล</th>
+                                             <th class="text-center">เบอร์โทร</th>
+                                            <th class="text-center">อีเมล</th>
+                                            <!--<th class="text-center">เลขบัตรประชาชน</th>
+                                            <th class="text-center">โปรเจ็ค</th> -->
+                                            <th class="text-center">วันที่ร้องขอ</th>
+                                            <th class="text-center">วันที่ยกเลิก</th>
+                                            <th class="text-center">ยกเลิกโดย</th>
+                                            <th class="text-center">สถานะ</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="tabReportProblemOk" role="tabpanel" aria-labelledby="received-tab">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">รายการร้องเรียน</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered datatables" id="item_table_list_problem" width="100%"
+                                    cellspacing="0">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th width="100"></th>
+                                            <th class="text-center">ชื่อ-นามสกุล</th>
+                                            <th class="text-center">เบอร์โทร</th>
+                                            <th class="text-center">เหตุผล</th>
+                                            <th class="text-center">วันที่ร้องขอ</th>
+                                            <th class="text-center">วันที่ตรวจสอบ</th>
+                                            <th class="text-center">ตรวจสอบโดย</th>
+                                            <th class="text-center">สถานะ</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th width="100"></th>
+                                            <th class="text-center">ชื่อ-นามสกุล</th>
+                                            <th class="text-center">เบอร์โทร</th>
+                                            <th class="text-center">เหตุผล</th>
+                                            <th class="text-center">วันที่ร้องขอ</th>
+                                            <th class="text-center">วันที่ตรวจสอบ</th>
+                                            <th class="text-center">ตรวจสอบโดย</th>
+                                            <th class="text-center">สถานะ</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="tabReportOk" role="tabpanel" aria-labelledby="received-tab">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">รายงาน</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered datatables" id="item_table_report" width="100%"
+                                    cellspacing="0">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th class="text-center">โปรเจ็ค</th>     
+                                            <th class="text-center">จำนวนลูกค้า</th>
+                                            <th class="text-center">จำนวนที่ยอมรับ</th>
+                                            <th class="text-center">จำนวนที่ยกเลิก</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-center">โปรเจ็ค</th>
+                                            <th class="text-center">จำนวนลูกค้า</th>
+                                            <th class="text-center">จำนวนที่ยอมรับ</th>
+                                            <th class="text-center">จำนวนที่ยกเลิก</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+        </div> <!-- end of container -->
+    </div> <!-- end of form -->
+    <!-- end of newsletter -->
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content ">
+        <div class="modal-header">
+            <h4 class="modal-title">ประวัติการดู</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body ">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">รายการ</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered datatables" id="item_table_view" width="100%"
+                            cellspacing="0">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="text-center">รหัสพนักงานที่เรียกดู</th>
+                                    <th class="text-center">ชื่อ-นามสกุล</th>
+                                    <th class="text-center">วันที่เรียกดู</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">รหัสพนักงานที่เรียกดู</th>
+                                    <th class="text-center">ชื่อ-นามสกุล</th>
+                                    <th class="text-center">วันที่เรียกดู</th>
+
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal -->
+
+    <!-- Footer -->
+    <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        viewBox="0 0 1920 79">
+        <defs>
+            <style>
+                .cls-2 {
+                    fill: #b30000;
+                }
+            </style>
+        </defs>
+        <title>footer-frame</title>
+        <path class="cls-2"
+            d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z"
+            transform="translate(0 -0.188)" />
+    </svg>
+
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p style="color: white;">Copyright © 2020 <a href="www.meecapital.co.th">meecapital.co.th</a></p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright -->
+    <!-- end of copyright -->
+
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+
+    <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    <!-- datatable -->
+    <script src="js/jquery-datatable.js"></script> <!-- datatable -->
+    <script src="js/datatables/jquery.dataTables.min.js"></script> <!-- datatable -->
+    <script src="js/datatables/dataTables.bootstrap4.min.js"></script> <!-- datatable -->
+    <script src="js/bootstrap/js/bootstrap.bundle.min.js"></script> <!-- datatable -->
+    <!-- datatable -->
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/url.js?n=2"></script>
+    <script src="js/helper.js?n=1"></script>
+
+    <!-- เอาไว้นับจำนวนการเข้าชม -->
+    <script>
+        var pagename = "pdpa_index";
+    </script>
+    <script src="js/visitlog.js"></script>
+    <!-- เอาไว้นับจำนวนการเข้าชม -->
+    <script id="test" type="text/javascript" src="jsPages/index.js"></script>
+    <script>
+        $("#test").remove();
+    </script>
+
+<style>
+    .notification {
+   /* background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px; */
+  position: relative;
+  /* display: inline-block;
+  border-radius: 2px;  */
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -7px;
+  right: -3px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+</style>
+
+    
+</body>
+
+</html>

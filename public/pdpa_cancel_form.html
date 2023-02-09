@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script>
+        $(function(){ 
+            setTimeout(function(){ 
+                $(".dataTables_filter").css("float", "right");
+                $(".dataTables_paginate").css("float", "right");
+             }, 1);
+            $("head").load("include/head.html"); 
+        });
+    </script>
+</head>
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+    <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script>
+            $(function () { $("nav").load("include/body.html") });
+        </script>
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-img header-content-bg">
+            <div style="padding: 50px;" class="header-content">
+            </div> <!-- end of header-content -->
+        </div> <!-- end of header-img -->
+    </header> <!-- end of header -->
+    <!-- Header -->
+
+    <br />
+
+    <!-- Newsletter -->
+    <div class="container-fluid col-10" >
+        <div class="card shadow mb-4">
+            <div style="text-align: center;" class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">แบบฟอร์มขอยกเลิกการยินยอมในการเก็บข้อมูลส่วนบุคคล</h6>
+            </div>
+            <div class="card-body" style="background-color: ghostwhite;">
+
+                <form name="sentMessage" id="contactForm" >
+                    <div class="row justify-content-center">
+                        <div class="col-10" >
+                            <div class="text-container">
+                            <div class="form-group">
+                                <label for="browser">ชื่อ-นามสกุล </label>&nbsp;<span style="color: red;">*</span>
+                                <input type="text" class="form-control" placeholder="กรอกชื่อ-นามสกุล" id="txt_name" required>
+                            </div>
+
+                             <div class="form-group">
+                                <label for="browser">เบอร์โทรศัพท์ (ไม่บังคับ) </label>
+                                <input type="tel" class="form-control" placeholder="กรอกเบอร์โทรศัพท์" id="txt_tel">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="browser">อีเมล (ไม่บังคับ)</label>
+                                <input type="email" class="form-control" placeholder="กรอกอีเมล" id="txt_email" >
+                            </div>
+
+                            <!-- <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="chkOk">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  ข้าพเจ้าได้อ่านและยอมรับเงื่อนไขตามที่บริษัทระบุไว้ทุกประการ <a id="readCondition" href="#readCondition">อ่านเงื่อนไขข้อตกลง</a>
+                                </label>
+                              </div> -->
+
+                            <div class="clearfix"></div>
+                            <br />
+                            <div class="col-12 text-center">
+                                <div id="success"></div>
+                                <button id="btnOK" class="btn btn-danger">ยืนยันข้อมูล</button>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end of newsletter -->
+
+
+    <!-- Footer -->
+    <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        viewBox="0 0 1920 79">
+        <defs>
+            <style>
+                .cls-2 {
+                    fill: #b30000;
+                }
+            </style>
+        </defs>
+        <title>footer-frame</title>
+        <path class="cls-2"
+            d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z"
+            transform="translate(0 -0.188)" />
+    </svg>
+
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p style="color: white;">Copyright © 2020 <a href="www.meecapital.co.th">meecapital.co.th</a></p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright -->
+    <!-- end of copyright -->
+
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/url.js?n=2"></script>
+    <script src="js/helper.js?n=1"></script>
+
+    <!-- เอาไว้นับจำนวนการเข้าชม -->
+    <script>
+        var pagename = "add_pdpa";
+    </script>
+    <script src="js/visitlog.js"></script>
+    <!-- เอาไว้นับจำนวนการเข้าชม -->
+    <script id="test" type="text/javascript" src="jsPages/pdpa_cancel_form.js"></script>
+    <script>
+        $("#test").remove();
+    </script>
+    
+</body>
+
+</html>
