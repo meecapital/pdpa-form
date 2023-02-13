@@ -27,13 +27,17 @@
             let val = $(this).val();
             //console.warn(val);
             if(val == 0){
-                $("#hide_input2").removeClass("d-none");
+                $("#hide_input3").addClass("d-none");
                 $("#hide_input1").addClass("d-none");
-                $("#txt_type_remark").prop("required" , true);
+                $("#hide_input2").removeClass("d-none");
+                $("#drdw_type_remark").prop("required" , false);
                 $("#drdw_type_loan").prop("required" , false);
+                $("#txt_type_remark").prop("required" , true);
             }else{
                 $("#hide_input1").removeClass("d-none");
+                $("#hide_input3").removeClass("d-none");
                 $("#hide_input2").addClass("d-none");
+                $("#drdw_type_remark").prop("required" , true);
                 $("#drdw_type_loan").prop("required" , true);
                 $("#txt_type_remark").prop("required" , false);
             }
@@ -203,10 +207,10 @@
 
             var drdw_type = $('#drdw_type').val();
             var txt_section = "";
-            if(drdw_type == 0){
+            if(drdw_type == 0){ 
                 txt_section = $('#txt_type_remark').val();
             }else{
-                txt_section = $('#drdw_type_loan').val();
+                txt_section = $('#drdw_type_loan').val() + "( " + $('#drdw_type_remark').val() + " )";
             }
             
             if(rd_prefix == "อื่นๆ"){
@@ -230,12 +234,13 @@
                 txt_section: txt_section,
             };
 
-            //console.log(MeeData);
+            console.log(MeeData);
 
             //return;
 
             $.ajax({
                 url: ApiUrl+"pdpa/request_problem",
+                //url: "http://localhost:45072/pdpa/request_problem",
                 type: "POST",
                 data: MeeData,
                 headers: ApiHeaderNoJson,
@@ -303,7 +308,7 @@
 
             $.ajax({
                 url: ApiUrl02 + "email/send_pdpa_problem_form",
-                //url: testUrl + "email/send_pdpa_problem_form",
+                //url: "http://localhost:45072/email/send_pdpa_problem_form",
                 type: "POST",
                 data: JSON.stringify(MeeData),
                 headers: ApiHeaderWithJson02,
