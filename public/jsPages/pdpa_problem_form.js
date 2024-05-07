@@ -63,8 +63,17 @@
                     //load btn
                     loadingBtn();
 
-                    //ส่งข้อมูล
-                    request_problem();
+                    try{
+
+                        //ส่งข้อมูล
+                        request_problem();
+
+                    }catch(error){
+                        alert(error);
+
+                    }
+
+                    
                 },
                 filter: function () {
                     return $(this).is(":visible");
@@ -196,77 +205,76 @@
 
         //ส่งข้อมูล
         function request_problem(){
-            // get values from FORM 
-            var	txt_name = $('#txt_name').val();
-            var rd_prefix = $('input[name=prefix]:checked', '#contactForm').val();
-            var	txt_tel	= $('#txt_tel').val();
-            var	txt_remark = $('#txt_remark').val();
-            var	txt_email = $('#txt_email').val();
-            var	txt_idcard = $('#txt_idcard').val();
-            var txt_line_id = $('#txt_line_id').val();
 
-            var drdw_type = $('#drdw_type').val();
-            var txt_section = "";
-            if(drdw_type == 0){ 
-                txt_section = $('#txt_type_remark').val();
-            }else{
-                txt_section = $('#drdw_type_loan').val() + "( " + $('#drdw_type_remark').val() + " )";
-            }
-            
-            if(rd_prefix == "อื่นๆ"){
-                rd_prefix = $("#txt_other_prefix").val()
-            }
+                // get values from FORM 
+                var	txt_name = $('#txt_name').val();
+                var rd_prefix = $('input[name=prefix]:checked', '#contactForm').val();
+                var	txt_tel	= $('#txt_tel').val();
+                var	txt_remark = $('#txt_remark').val();
+                var	txt_email = $('#txt_email').val();
+                var	txt_idcard = $('#txt_idcard').val();
+                var txt_line_id = $('#txt_line_id').val();
 
-            //คำนำหน้า + ชื่อจริง - นามสกุล
-            var fullname = rd_prefix + txt_name;
+                var drdw_type = $('#drdw_type').val();
+                var txt_section = "";
+                if(drdw_type == 0){ 
+                    txt_section = $('#txt_type_remark').val();
+                }else{
+                    txt_section = $('#drdw_type_loan').val() + "( " + $('#drdw_type_remark').val() + " )";
+                }
+                
+                if(rd_prefix == "อื่นๆ"){
+                    rd_prefix = $("#txt_other_prefix").val()
+                }
 
-            var MeeData = {
-                project : "",
-                fullname : fullname,
-                idCard : txt_idcard,
-                tel : txt_tel,
-                email : txt_email,
-                lineId : txt_line_id,
-                remark : txt_remark,
-                acceptance : "R",
-                status : "N",
-                arr_files: arr_files,
-                txt_section: txt_section,
-            };
+                //คำนำหน้า + ชื่อจริง - นามสกุล
+                var fullname = rd_prefix + txt_name;
 
-            console.log(MeeData);
+                var MeeData = {
+                    project : "",
+                    fullname : fullname,
+                    idCard : txt_idcard,
+                    tel : txt_tel,
+                    email : txt_email,
+                    lineId : txt_line_id,
+                    remark : txt_remark,
+                    acceptance : "R",
+                    status : "N",
+                    arr_files: arr_files,
+                    txt_section: txt_section,
+                };
 
-            //return;
+                // console.log(MeeData);
 
-            $.ajax({
-                url: ApiUrl+"pdpa/request_problem",
-                //url: "http://localhost:45072/pdpa/request_problem",
-                type: "POST",
-                data: MeeData,
-                headers: ApiHeaderNoJson,
-                cache: false,
-                success: function (data) {
+                // return;
 
-                    send_mail(MeeData,(res)=>{
+                $.ajax({
+                    url: ApiUrl02 + "legal_work/clientSendComplaint",
+                    // url: "http://localhost:45072/legal_work/clientSendComplaint",
+                    type: "POST",
+                    data: JSON.stringify( MeeData ),
+                    headers: ApiHeaderWithJson02,
+                    cache: false,
+                    success: function (res) {
 
                         //ปิด loading
                         nomalBtn();
 
                         if(res.status == "success"){
 
-                            // Success message
-                            $('#success').html("<div class='alert alert-success'>");
-                            $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                                .append("</button>");
-                            $('#success > .alert-success')
-                                .append("<strong>บันทึกข้อมูลสำเร็จ, ทางบริษัทจะดำเนินการตรวจสอบโดยเร็วที่สุด</strong>");
-                            $('#success > .alert-success')
-                                .append('</div>');
+                                // Success message
+                                $('#success').html("<div class='alert alert-success'>");
+                                $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                                    .append("</button>");
+                                $('#success > .alert-success')
+                                    .append("<strong>บันทึกข้อมูลสำเร็จ</strong> <br /> <strong>ทางบริษัทจะดำเนินการตรวจสอบโดยเร็วที่สุด, ขอบคุณค่ะ</strong>");
+                                $('#success > .alert-success')
+                                    .append('</div>');
 
-                            //clear all fields
-                            $('#contactForm').trigger("reset");
-                            $("#txt_other_prefix").get(0).type = 'hidden';
-                            clear_upload();
+                                //clear all fields
+                                $('#contactForm').trigger("reset");
+                                $("#txt_other_prefix").get(0).type = 'hidden';
+                                clear_upload();
 
                         }else{
 
@@ -279,62 +287,31 @@
                             //clear all fields
                             //$('#contactForm').trigger("reset");
 
+                            reject(data);
+
                         }
 
-                    });
+                    },
+                    error: function (err) {
+                        
+                        //ปิด loading
+                        nomalBtn();
 
-                },
-                error: function (data) {
-                    
-                    //ปิด loading
-                    nomalBtn();
+                        //console.log(data);
 
-                    //console.log(data);
+                        // Fail message
+                        $('#success').html("<div class='alert alert-danger'>");
+                        $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                            .append("</button>");
+                        $('#success > .alert-danger').append("<strong>เกิดข้อผิดพลาด, โปรดลองดำเนินการใหม่");
+                        $('#success > .alert-danger').append('</div>');
+                        //clear all fields
+                        //$('#contactForm').trigger("reset");
 
-                    // Fail message
-                    $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-danger').append("<strong>เกิดข้อผิดพลาด, โปรดลองดำเนินการใหม่");
-                    $('#success > .alert-danger').append('</div>');
-                    //clear all fields
-                    //$('#contactForm').trigger("reset");
-                },
-            });
-        }
+                        reject(err);
 
-        function send_mail(MeeData, res){
-            //console.warn(MeeData);
-
-            $.ajax({
-                url: ApiUrl02 + "email/send_pdpa_problem_form",
-                //url: "http://localhost:45072/email/send_pdpa_problem_form",
-                type: "POST",
-                data: JSON.stringify(MeeData),
-                headers: ApiHeaderWithJson02,
-                cache: false,
-                success: function (data) {
-                    res(data);
-                },
-                error: function (data) {
-
-                    //ปิด loading
-                    nomalBtn();
-
-                    //console.log(data);
-
-                    res(data);
-
-                    // Fail message
-                    $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-danger').append("<strong>เกิดข้อผิดพลาด, โปรดลองดำเนินการใหม่");
-                    $('#success > .alert-danger').append('</div>');
-                    //clear all fields
-                    //$('#contactForm').trigger("reset");
-                },
-            });
+                    },
+                });
         }
 
         function nomalBtn(){
