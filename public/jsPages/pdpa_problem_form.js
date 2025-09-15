@@ -3,6 +3,7 @@
         var mybutton = document.getElementById("myBtn");
         //ประกาศ array global
         var arr_files = [];
+        var file_idcard = [];
         // When the user clicks on the button, scroll to the top of the document
         function topFunction() {
             document.body.scrollTop = 0;
@@ -96,6 +97,12 @@
             upload_files(e);
         });
 
+        //เมื่อ upload file
+        $("#txt_upload_idcard").change(function(e){
+            //เมื่อ upload file
+            upload_files_idcard(e);
+        });
+
         //ล้างข้อมูล upload
         function clear_upload(){
 
@@ -108,6 +115,21 @@
             $("#showfiles").html("");
             //ล้างข้อมูล arr_files
             arr_files = [];
+
+        }
+
+        //ล้างข้อมูล upload
+        function clear_upload_idcard(){
+
+            //clear ข้อมูล upload
+            $("#txt_upload_idcard").val("");
+            //ซ่อนพื้นที่ upload
+            //$("#div_showfiles").addClass("d-none");
+            $("#div_showfiles_idcard").css("display", "none");
+            //ล้าง html showfile
+            $("#showfilesIdcard").html("");
+            //ล้างข้อมูล arr_files
+            file_idcard = [];
 
         }
 
@@ -146,6 +168,44 @@
             });
 
           }
+
+           //เมื่อ upload file
+        function upload_files_idcard(e) {
+
+            // console.warn("idcard");
+
+            checkFileLenght(e, (res)=>{
+
+                //ถ้ามีขนาดเกิน
+                if(res){
+
+                    alert("ขนาดไฟล์รวมต้องมีขนาดไม่เกิน 24 mb");
+                    clear_upload_idcard();
+
+                }else{
+
+                    //ล้างข้อมูล arr_files
+                    file_idcard = [];
+
+                    //ล้าง html showfile
+                    $("#showfilesIdcard").html("");
+
+                    //โชว์ไฟล์
+                    //$("#div_showfiles").removeClass("d-none");
+                    $("#div_showfiles_idcard").css("display", "");
+
+                    let files = e.target.files;
+
+                    if (files) {
+
+                        //อ่านไฟล์ upload
+                        readFilesIdcard(files);
+
+                    }
+                }
+            });
+
+          }
          
           function readFiles(files){
             for (let file of files) {
@@ -153,7 +213,7 @@
                 //console.log(file);
                 reader.onload = (ev) => {
                 let base64String = ev.target.result.replace('data:', '').replace(/^.+,/, '');
-                var data =  {   // encoded string as an attachment
+                let data =  {   // encoded string as an attachment
                     filename: file.name,
                     content: base64String,
                     encoding: 'base64'
@@ -165,6 +225,33 @@
                 reader.readAsDataURL(file);
 
                 $("#showfiles").append(`
+                    <div style="text-align: center;" class="col-md-3 clear_upload">
+                        <img  width="60" 
+                        src="https://meeconnect.meecapital.co.th/page/img/Filetype-Docs-icon.png" />
+                        <p>${file.name}</p>
+                    </div>
+                `);
+              }
+          }
+          
+          function readFilesIdcard(files){
+            for (let file of files) {
+                let reader = new FileReader();
+                //console.log(file);
+                reader.onload = (ev) => {
+                    let base64String = ev.target.result.replace('data:', '').replace(/^.+,/, '');
+                    let data =  {   // encoded string as an attachment
+                        filename: file.name,
+                        content: base64String,
+                        encoding: 'base64'
+                    }
+
+                    file_idcard.push(data);
+
+                }
+                reader.readAsDataURL(file);
+
+                $("#showfilesIdcard").append(`
                     <div style="text-align: center;" class="col-md-3 clear_upload">
                         <img  width="60" 
                         src="https://meeconnect.meecapital.co.th/page/img/Filetype-Docs-icon.png" />
@@ -240,7 +327,8 @@
                     remark : txt_remark,
                     acceptance : "R",
                     status : "N",
-                    arr_files: arr_files,
+                    arr_files,
+                    file_idcard,
                     txt_section: txt_section,
                 };
 

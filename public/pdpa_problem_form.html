@@ -60,15 +60,17 @@
                     <div class="row justify-content-center">
                         <div class="col-md-10" >
                             <div class="text-container">
-                            <div class="form-group">
-                                <label for="browser">ประเภทเรื่องร้องเรียน </label>&nbsp;<span style="color: red;">*</span>
+                            <div class="form-group mt-5 mb-5">
+                                <label for="browser">
+                                    <span style="color: red;" class="mr-1">*</span>
+                                    ประเภทเรื่องร้องเรียน </label> 
                                 <select required class="form-control" name="drdw_type" id="drdw_type">
                                     <option selected value="">-- โปรดเลือกประเภท --</option>
                                     <option value="0">เรื่องทั่วไป</option>
                                     <option value="1">เรื่องสินเชื่อ</option>
                                 </select>
                             </div>
-                            <div id="hide_input1" class="form-group d-none">
+                            <div id="hide_input1" class="form-group mt-5 mb-5 d-none">
                                 <label for="browser">ประเภทสินเชื่อ </label>&nbsp;<span style="color: red;">*</span>
                                 <select class="form-control" name="drdw_type_loan" id="drdw_type_loan">
                                     <option selected value="">-- โปรดระบุประเภทสินเชื่อ --</option>
@@ -78,11 +80,11 @@
                                     <option value="สินเชื่อโซล่าเซลล์"> สินเชื่อโซล่าเซลล์ (Solar Rooftop Loan)</option>
                                 </select>
                             </div>
-                            <div id="hide_input2" class="form-group d-none">
+                            <div id="hide_input2" class="form-group mt-5 mb-5 d-none">
                                 <label for="browser">ระบุ </label>&nbsp;<span style="color: red;">*</span>
                                 <textarea rows="5" class="form-control" placeholder="โปรดระบุหัวข้อของปัญหาที่พบ" id="txt_type_remark"></textarea>
                             </div>
-                            <div id="hide_input3" class="form-group d-none">
+                            <div id="hide_input3" class="form-group mt-5 mb-5 d-none">
                                 <label for="browser">ระบุ </label>&nbsp;<span style="color: red;">*</span>
                                 <select class="form-control" name="drdw_type_remark" id="drdw_type_remark">
                                     <option selected value="">-- โปรดระบุสาเหตุ --</option>
@@ -91,9 +93,12 @@
                                     <option value="อื่นๆ">อื่นๆ</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <p>คำนำหน้าชื่อ 
-                                    &nbsp;<span style="color: red;">*</span>
+                            <div class="form-group mt-5 mb-5">
+ 
+                                <p>
+                                    <span style="color: red;" class="mr-1">*</span>
+                                    คำนำหน้าชื่อ 
+                                     
                                 </p>
                                   <input type="radio" id="radio1" name="prefix" value="นาย" required>
                                   <label for="radio1">นาย</label>
@@ -108,28 +113,56 @@
                                   <label for="radio4">อื่นๆ</label>
                                   <input type="hidden" placeholder="โปรดระบุคำนำหน้า" id="txt_other_prefix" required>
                             </div>
-                            <div class="form-group">
-                                <label for="browser">ชื่อ-นามสกุล </label>&nbsp;<span style="color: red;">*</span>
+                            <div class="form-group mt-5 mb-5">
+                                <label for="browser">
+                                    <span style="color: red;" class="mr-1">*</span>
+                                    ชื่อ-นามสกุล </label> 
                                 <input type="text" class="form-control" placeholder="กรอกชื่อ-นามสกุล" id="txt_name" required>
                             </div>
 
-                            <div class="form-group">
-                                <label for="browser">หมายเลขบัตรประชาชน / เลขที่หนังสือเดินทาง</label>&nbsp;<span style="color: red;">*</span>
+                            <div class="form-group mt-5 mb-5">
+                                <label for="browser">
+                                    <span style="color: red;" class="mr-1">*</span>
+                                    หมายเลขบัตรประชาชน / เลขที่หนังสือเดินทาง (ตรวจสอบวันหมดอายุก่อนกรอกข้อมูล)
+                                </label>
                                 <input type="text" class="form-control" placeholder="กรอกหมายเลขบัตรประชาชน / เลขที่หนังสือเดินทาง"
                                 oninvalid="this.setCustomValidity('กรุณากรอกรูปแบบที่ถูกต้อง(ตัวเลข 13 หลัก)')"
                                 oninput="this.setCustomValidity('')" required
                                 pattern="[0-9]{13}" id="txt_idcard" >
                             </div>
 
-                             <div class="form-group">
-                                <label for="browser">เบอร์โทรศัพท์</label>&nbsp;<span style="color: red;">*</span>
+                            <div class="form-group mt-5 mb-5">
+                                <label for="browser">
+                                    <span style="color: red;" class="mr-1">*</span>
+                                    ยืนยันตัวตน พร้อมแนบไฟล์สำเนาบัตรประชาชน (รบกวนขีดฆ่าข้อมูลศาสนาก่อนแนบไฟล์) 
+                                </label>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <input required type="file" class="form-control col-md-10" id="txt_upload_idcard">
+                                        <button type="button" onclick="clear_upload_idcard()" id="btnClearIdcard" class="btn btn-sm btn-warning col-md">ล้าง</button>
+                                        <span>* ขนาดไฟล์ต้องไม่เกิน 24 MB</span>
+                                    </div>
+                                </div>
+                                <!-- <br /> -->
+                                <div id="div_showfiles_idcard" class="card-body mt-4" style="display: none; border-style: ridge; background-color: white">
+                                    <div id="showfilesIdcard" class="row">
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+
+                            <div class="form-group mt-5 mb-5">
+                                <label for="browser">
+                                    <span style="color: red;" class="mr-1">*</span>
+                                    เบอร์โทรศัพท์</label> 
                                 <input type="tel" class="form-control" placeholder="กรอกเบอร์โทรศัพท์"
                                 oninvalid="this.setCustomValidity('กรุณากรอกรูปแบบเบอร์ที่ถูกต้อง(ไม่ต้องใส่ -)')"
                                 oninput="this.setCustomValidity('')" required
                                 pattern="[0-9]{10}" id="txt_tel">
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group  mt-5 mb-5">
                                 <label for="browser">อีเมล (ไม่บังคับ) </label>
                                 <input type="text" class="form-control" placeholder="กรอกอีเมล" 
                                 oninvalid="this.setCustomValidity('กรุณากรอกรูปแบบอีเมลที่ถูกต้อง เช่น xxx@hotmail.com')"
@@ -137,27 +170,29 @@
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="txt_email">
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-5 mb-5">
                                 <label for="browser">ไลน์ไอดี (ไม่บังคับ) </label>
                                 <input type="text" class="form-control" placeholder="กรอกไลน์ไอดี" id="txt_line_id">
                             </div>
 
-                            <div class="form-group">
-                                <label for="browser">ปัญหาที่พบ </label>&nbsp;<span style="color: red;">*</span>
+                            <div class="form-group mt-5 mb-5">
+                                <label for="browser">
+                                    <span style="color: red;" class="mr-1">*</span>
+                                    ปัญหาที่พบ </label> 
                                 <textarea rows="5" class="form-control" required placeholder="กรอกปัญหาที่พบ" id="txt_remark"></textarea>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-5 mb-5">
                                 <label for="browser">เอกสารที่เกี่ยวข้อง (ไม่บังคับ) </label>
                                     <div class="container-fluid">
                                     <div class="row">
-                                        <input multiple type="file" class="form-control col-md-6" id="txt_upload">
+                                        <input multiple type="file" class="form-control col-md-10" id="txt_upload">
                                         <button type="button" onclick="clear_upload()" id="btnClear" class="btn btn-sm btn-warning col-md">ล้าง</button>
-                                        <p class="col-md-5">* ขนาดไฟล์รวมต้องไม่เกิน 24 MB</p>
+                                        <span>* ขนาดไฟล์ต้องไม่เกิน 24 MB</span>
                                     </div>
                                 </div>
-                                <br />
-                                <div id="div_showfiles" class="card-body" style="display: none; border-style: ridge; background-color: white">
+                                <!-- <br /> -->
+                                <div id="div_showfiles" class="card-body mt-4" style="display: none; border-style: ridge; background-color: white">
                                     <div id="showfiles" class="row">
                                         <!-- <div style="text-align: center;" class="col-md-3">
                                             <img  width="60" 
@@ -170,22 +205,76 @@
                                 
                             </div>
 
-                            <div class="form-check">
-                                <input required class="form-check-input" type="checkbox" value="" id="chkOk">
+                            <div class="form-check mt-3 mb-3">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <!-- <input multiple type="file" class="form-control col-md-6" id="txt_upload">
+                                        <button type="button" onclick="clear_upload()" id="btnClear" class="btn btn-sm btn-warning col-md">ล้าง</button>
+                                        <p class="col-md-5">* ขนาดไฟล์รวมต้องไม่เกิน 24 MB</p> -->
+                                        <div class="col-auto px-0">
+                                            <input required class="form-check-input big-checkbox" type="checkbox" value="" id="chk-idcard">
+                                        </div>
+                                        
+                                        <div class="col-md-auto">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            ข้าวเจ้าขอยืนยันตัวตนและรับรองว่า ข้อมูลของข้าพเจ้าที่ได้ให้ไปข้างต้น เป็นข้อมูลของข้าพเจ้าจริงโดยข้าพเจ้าเป็นผู้กรอก ทั้งนี้ได้แนบเอกสารมาเพื่อยืนยันตัวตนตามไฟล์แนบ
+                                        </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-check mt-3 mb-3">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <!-- <input multiple type="file" class="form-control col-md-6" id="txt_upload">
+                                        <button type="button" onclick="clear_upload()" id="btnClear" class="btn btn-sm btn-warning col-md">ล้าง</button>
+                                        <p class="col-md-5">* ขนาดไฟล์รวมต้องไม่เกิน 24 MB</p> -->
+                                        <div class="col-auto px-0">
+                                            <input required class="form-check-input big-checkbox" type="checkbox" value="" id="chk-accept">
+                                        </div>
+                                        
+                                        <div class="col-md-auto">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            ท่านได้อ่านและทำความเข้าใจรายละเอียดของประกาศการคุ้มครองข้อมูลส่วนบุคคลของบริษัท 
+                                            <a id="readCondition" href="#readCondition">คลิกที่นี่</a>  
+                                            โดยท่านรับทราบว่าบริษัทจะเก็บรวบรวมและใช้ข้อมูลส่วนบุคคลของท่าน เพื่อใช้ในการดำเนินการตามที่ท่านร้องขอ 
+                                        </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-check mt-3 mb-3">
+                                <input required class="form-check-input big-checkbox" type="checkbox" value="" id="chkOk">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     ท่านได้อ่านและทำความเข้าใจรายละเอียดของประกาศการคุ้มครองข้อมูลส่วนบุคคลของบริษัท 
                                     <a id="readCondition" href="#readCondition">คลิกที่นี่</a>  
                                     โดยท่านรับทราบว่าบริษัทจะเก็บรวบรวมและใช้ข้อมูลส่วนบุคคลของท่าน เพื่อใช้ในการดำเนินการตามที่ท่านร้องขอ 
                                 </label>
-                            </div>
+                            </div> -->
+
+                            <style>
+                                .big-checkbox {
+                                    /* width: 20px; */
+                                    /* height: 20px; */
+                                    transform: scale(2);   /* ขยาย 2 เท่า */
+                                    /* margin: 10px; */
+                                    cursor: pointer;
+                                    margin-top: 12px;
+                                    margin-left: -14px;
+                                }
+                            </style>
 
                             
 
                             <div class="clearfix"></div>
                             <br />
-                            <div class="col-12 text-center">
+                            <div class="text-center">
                                 <div id="success"></div>
-                                <button style="display: inline-flex;" id="btnOK" class="btn  btn-primary">
+                                <button style="width: 100%; max-width: 400px;" id="btn-submit" class="btn btn-primary">
                                     <i style="margin-top: 3px;" id="i-loaing" class="fa fa-spinner fa-spin d-none"></i> 
                                     <div class="" id="btn_txt1"> ส่งข้อมูล</div>
                                     <div class="d-none" id="btn_txt2"> โปรดรอสักครู่...</div>
