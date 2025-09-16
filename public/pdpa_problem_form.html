@@ -94,25 +94,42 @@
                                 </select>
                             </div>
                             <div class="form-group mt-5 mb-5">
- 
-                                <p>
-                                    <span style="color: red;" class="mr-1">*</span>
-                                    คำนำหน้าชื่อ 
-                                     
-                                </p>
-                                  <input type="radio" id="radio1" name="prefix" value="นาย" required>
-                                  <label for="radio1">นาย</label>
+                            <p>
+                                <span style="color: red;" class="mr-1">*</span>
+                                คำนำหน้าชื่อ
+                            </p>
 
-                                  <input type="radio" id="css" name="prefix" value="นาง" required>
-                                  <label for="radio2">นาง</label>
-
-                                  <input type="radio" id="radio3" name="prefix" value="นางสาว" required>
-                                  <label for="radio3">นางสาว</label>
-
-                                  <input type="radio" id="radio4" name="prefix" value="อื่นๆ" required>
-                                  <label for="radio4">อื่นๆ</label>
-                                  <input type="hidden" placeholder="โปรดระบุคำนำหน้า" id="txt_other_prefix" required>
+                            <div class="row radio-wrapper">
+                                <div class="col-md-auto col-12">
+                                <input type="radio" id="radio1" name="prefix" value="นาย" required>
+                                <label for="radio1">นาย</label>
+                                </div>
+                                <div class="col-md-auto col-12">
+                                <input type="radio" id="radio2" name="prefix" value="นาง" required>
+                                <label for="radio2">นาง</label>
+                                </div>
+                                <div class="col-md-auto col-12">
+                                <input type="radio" id="radio3" name="prefix" value="นางสาว" required>
+                                <label for="radio3">นางสาว</label>
+                                </div>
+                                <div class="col-md-auto col-12">
+                                <input type="radio" id="radio4" name="prefix" value="อื่นๆ" required>
+                                <label for="radio4">อื่นๆ</label>
+                                <input type="hidden" placeholder="โปรดระบุคำนำหน้า" id="txt_other_prefix" required>
+                                </div>
                             </div>
+                            </div>
+                            <style> 
+
+                                .radio-wrapper input[type="radio"] {
+                                    transform: scale(1.7); /* ขยาย radio ให้ใหญ่ */
+                                    /* margin-left: 10px; */
+                                    margin-right: 15px;
+                                }
+
+         
+
+                            </style>
                             <div class="form-group mt-5 mb-5">
                                 <label for="browser">
                                     <span style="color: red;" class="mr-1">*</span>
